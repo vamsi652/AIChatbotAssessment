@@ -7,7 +7,6 @@ from utils.retrieval import retrieve_relevant_docs
 from utils.search import web_search
 
 def get_chat_response(chat_model, messages, system_prompt):
-    """Get response from the chat model"""
     try:
         formatted_messages = [SystemMessage(content=system_prompt)]
         for msg in messages:
@@ -56,7 +55,6 @@ def chat_page():
                     for d in docs:
                         st.markdown(d)
 
-                # Web search fallback if prompted
                 search_results = []
                 if "search" in prompt.lower():
                     search_results = web_search(prompt)
@@ -64,7 +62,6 @@ def chat_page():
                     for res in search_results:
                         st.markdown(res)
 
-                # Get the main response
                 response = get_chat_response(chat_model, st.session_state.messages, system_prompt)
                 st.markdown(response)
 
