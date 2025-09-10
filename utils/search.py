@@ -10,7 +10,7 @@ def web_search(query):
     }
     response = requests.get(url, params=params)
     print("Status Code:", response.status_code)
-    print("Response JSON:", response.json())  # Add this line to inspect the result
+    print("Response JSON:", response.json())
     if response.status_code == 200:
         results = response.json().get("items", [])
         return [item["snippet"] for item in results[:3]]
